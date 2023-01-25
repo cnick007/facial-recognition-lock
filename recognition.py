@@ -50,7 +50,6 @@ for ((x, y, w, h), name) in zip(faces, names):
     cv2.rectangle(inputImage, (x, y), (x + w, y + h), (0, 0, 255), 2)
     cv2.putText(inputImage, name, (x, y - 4), cv2.FONT_ITALIC,
                 0.75, (0, 0, 255), 2)
-    cv2.imshow("Frame", inputImage)
     if not os.path.exists("out"):
         os.mkdir("out")
     cv2.imwrite("out/out_img.jpg", inputImage)
