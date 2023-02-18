@@ -5,6 +5,7 @@ This was designed to work with a Raspberry Pi 4 and Pi Camera V2. The Pi Camera 
 Python3, Pip and venv are required, then run the following commands to get started:
 ```
 git clone https://github.com/cnick007/facial-recognition-lock
+cd facial-recognition-lock
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
