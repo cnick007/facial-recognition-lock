@@ -12,16 +12,4 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-Once setup, run the main.py file. This will create a "KnownFaces" directory in which you can place any faces you would like to save and recognized. Face images should be placed in their own directories. The directories should be named the name of the person the face belongs to.
-
-The hierarchy should look as follows (NOTE: image file names don't matter):
-```
-KnownFaces/Person1 Name/p1faceimage1.png
-KnownFaces/Person1 Name/p1faceimage2.jpg
-
-KnownFaces/Person2 Name/p2faceimage1.png
-```
-
-The more faces with the same name, the more accurate the recognition should be.
-
-Once all desired faces are added to the "KnownFaces" directory, run the main.py file again. It should initialize and start scanning for known faces assuming the Pi Camera V2 is setup correctly. Once a known face is recognized, an out image will be placed in the "out" directory with the recognized face labeled.
+Once setup, run the main.py file. This will create a "trainer" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 30 samples, the trained face will be saved to "trainer/trainer.yml". It will then launch another window that scans for known faces and will outline all faces in the frame and give them a confidence rating (lower = better). If the confidence is below a tolerance of 25, the face is considered known and "Face Match!" is printed to the console.
