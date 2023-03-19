@@ -12,4 +12,18 @@ pip install -r requirements.txt
 ```
 
 ## Usage
+### lbph_recognizer
+import Recognizer at the top of the main.py file with
+```
+from lbph_recognizer import Recognizer
+```
+
 Once setup, run the main.py file. This will create a "trainer" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 30 samples, the trained face will be saved to "trainer/trainer.yml". It will then launch another window that scans for known faces and will outline all faces in the frame and give them a confidence rating (lower = better). If the confidence is below a tolerance of 25, the face is considered known and "Face Match!" is printed to the console.
+
+### neural_recognizer
+import Recognizer at the top of the main.py file with
+```
+from neural_recognizer import Recognizer
+```
+
+Once setup, run the main.py file. This will create a "known_faces" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 30 samples, the faces will be saved to "known_faces/img-#.png". It will then launch another window that scans for known faces. If a match is found, it will print "Face Match!" in the console.
