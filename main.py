@@ -1,4 +1,4 @@
-from recognizer import Recognizer
+from neural_recognizer import Recognizer
 import cv2
 import os
 
@@ -6,12 +6,9 @@ import os
 def main():
     recognizer = Recognizer()
 
-    if not os.path.exists("trainer/trainer.yml"):
-        recognizer.train_new_face()
-
     print("Starting scan...")
     while True:
-        cv2.imshow("Test", recognizer.recognize_faces(tolerance=25))
+        cv2.imshow("Test", recognizer.recognize_faces())
 
         # check if a face match was found
         if recognizer.face_match:
