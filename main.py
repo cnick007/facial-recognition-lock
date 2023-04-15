@@ -6,14 +6,21 @@ import RPi.GPIO as GPIO
 import os
 
 delay = 10
+locked = True
 
 
 def unlock():
+    global locked
+    locked = False
     GPIO.output(18, 1)
+    print("Unlock door!")
     return time()
 
 
 def lock():
+    global locked
+    locked = True
+    print("Lock door!")
     GPIO.output(18, 0)
 
 
@@ -37,6 +44,7 @@ def main():
     recognizer.load_known_faces()
 
     print("Starting scan...")
+    lock()
     while True:
         if cv2.waitKey(25) & 0xFF == ord("q"):
             break
@@ -50,6 +58,8 @@ def main():
             sleep(1)
 
         if time() > (unlock_time + delay):
+            if not locked:
+                lock()
             # check if a face match was found
             if recognizer.face_match:
                 unlock_time = unlock()
