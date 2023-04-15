@@ -28,7 +28,8 @@ def main():
     GPIO.output(18, 0)
 
     faces_folder = "known_faces"
-    recognizer = Recognizer(faces_folder)
+    tolerance = 0.4
+    recognizer = Recognizer(faces_folder, tolerance)
     if not os.path.exists(faces_folder):
         os.mkdir(faces_folder)
         recognizer.train_new_face()
@@ -40,7 +41,7 @@ def main():
         if cv2.waitKey(25) & 0xFF == ord("q"):
             break
 
-        cv2.imshow("Test", recognizer.recognize_faces())
+        cv2.imshow("Face Recognition", recognizer.recognize_faces())
 
         if GPIO.input(25) == GPIO.HIGH:
             print("Adding new face!")

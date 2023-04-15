@@ -4,9 +4,10 @@ import face_recognition
 
 
 class Recognizer:
-    def __init__(self, faces_folder):
+    def __init__(self, faces_folder, tolerance):
         print("Initializing recognizer...")
 
+        self.tolerance = tolerance
         self.known_face_encodings = []
         self.faces_folder = faces_folder
         self.face_match = False
@@ -82,7 +83,7 @@ class Recognizer:
             left *= 4
 
             matches = face_recognition.compare_faces(
-                self.known_face_encodings, face_encoding, 0.6
+                self.known_face_encodings, face_encoding, self.tolerance
             )
 
             text = "Unknown"
