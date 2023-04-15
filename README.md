@@ -12,18 +12,9 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-### lbph_recognizer
-import Recognizer at the top of the main.py file with
-```
-from lbph_recognizer import Recognizer
-```
-
-Once setup, run the main.py file. This will create a "trainer" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 30 samples, the trained face will be saved to "trainer/trainer.yml". It will then launch another window that scans for known faces and will outline all faces in the frame and give them a confidence rating (lower = better). If the confidence is below a tolerance of 25, the face is considered known and "Face Match!" is printed to the console.
-
 ### neural_recognizer
-import Recognizer at the top of the main.py file with
-```
-from neural_recognizer import Recognizer
-```
+Once setup, run the main.py file. This will create a "known_faces" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 10 samples, the faces will be saved to "known_faces/img-#.png". It will then launch another window that scans for known faces. If a match is found, it will print "Face Match!" in the console.
 
-Once setup, run the main.py file. This will create a "known_faces" directory, launch a window showing the camera, and start scanning for a face to add to the recognizer. After it has collected 30 samples, the faces will be saved to "known_faces/img-#.png". It will then launch another window that scans for known faces. If a match is found, it will print "Face Match!" in the console.
+The system utilizes GPIO 25 and 27 to handle adding new faces and emergency unlock respectively. To utilize this functionality, the system will need to be have some form of input (push buttons preferably) hooked up to these GPIO pins on the Pi 4. The system also controls a locking mechanism that will need to be attached to GPIO 18 in the form of a solenoid lock.
+
+Once the hardware is connected, the system should now be a fully functional facial recognition locking system. To add new faces, press the button connected to GPIO 25. To open the lock in an emergency, press the secret emergency unlock button at GPIO 27. Whenever a known face is detected in the camera frame, the door will unlock for 10s giving the user enough time to open the door before locking again. 
